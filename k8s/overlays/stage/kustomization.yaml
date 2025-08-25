@@ -5,7 +5,7 @@ metadata:
   namespace: stage
 resources:
   - ../../base/api-gw
-  - resources/rabbitmq/rabbitmq-manifest.yaml
+  - resources/rabbitmq
 
 patches:
   - target:
