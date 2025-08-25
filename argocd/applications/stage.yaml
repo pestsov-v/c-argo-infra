@@ -9,8 +9,6 @@ spec:
     repoURL: 'https://github.com/pestsov-v/c-argo-infra.git'
     targetRevision: main
     path: k8s/overlays/stage
-    kustomize:
-      version: v3.8.2
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: stage
