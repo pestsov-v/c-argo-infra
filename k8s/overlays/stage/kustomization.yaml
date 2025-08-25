@@ -8,4 +8,5 @@ patches:
   - target:
       kind: SealedSecret
       name: api-gw-sealed-secret
+      namespace: stage
     path: ./api-gw/sealed-secret.yaml
