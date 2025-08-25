@@ -4,4 +4,10 @@ metadata:
   name: stage
   namespace: stage
 resources:
-  - ../../base
+  - ../../base/api-gw
+
+patches:
+  - target:
+      kind: SealedSecret
+      name: api-gw-sealed-secret
+    path: ./api-gw/sealed-secret.yaml
