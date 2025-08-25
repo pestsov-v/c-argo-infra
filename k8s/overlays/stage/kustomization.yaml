@@ -23,6 +23,10 @@ patches:
       kind: SealedSecret
       name: api-gw-sealed-secret
     path: ./services/api-gw/sealed-secret.yaml
+  - target:
+      kind: SealedSecret
+      name: schedule-sealed-secret
+    path: ./services/schedule/sealed-secret.yaml
 
 
 

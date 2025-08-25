@@ -1,0 +1,1 @@
+ k3d image import cultimator-c-schedule-service:latest --c c-argo-cluster
