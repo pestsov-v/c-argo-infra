@@ -21,7 +21,7 @@ data:
   REDIS_PORT: '6379'
 
   # rabbit mq
-  RABBIT_MQ_HOST: 'rabbit-mq'
+  RABBIT_MQ_HOST: 'rabbitmq'
   RABBIT_MQ_PORT: '5672'
 
   # postgres
