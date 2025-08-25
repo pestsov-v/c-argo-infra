@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gw-service-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-gw-service-redis
+  template:
+    metadata:
+      labels:
+        app: api-gw-service-redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:7-alpine
+          ports:
+            - containerPort: 6379
+          env:
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: api-gw-sealed-secret
+                  key: REDIS_PASSWORD
+          command: ["sh", "-c"]
+          args:
+            - redis-server --requirepass "$REDIS_PASSWORD"

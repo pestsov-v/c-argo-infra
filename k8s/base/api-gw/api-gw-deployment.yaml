@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gw-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-gw-service
+  template:
+    metadata:
+      labels:
+        app: api-gw-service
+    spec:
+      containers:
+        - name: api-gw-service
+          image: cultimator-c-api-gw-service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 20080
+          envFrom:
+            - configMapRef:
+                name: api-gw-service-config
+            - secretRef:
+                name: api-gw-sealed-secret

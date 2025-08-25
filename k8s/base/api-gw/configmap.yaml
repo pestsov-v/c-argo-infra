@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-gw-service-config
+data:
+  NODE_ENV: development
+
+  SERVICE_NAME: 'api-gw'
+
+  # jaeger tracing
+  TRACER_COLLECT_URL: 'http://jaeger-collector:4318/v1/traces'
+  TRACER_TYPE: 'const'
+  TRACER_PARAM: '1'
+  TRACER_LOG_SPANS: 'true'
+
+  # logger
+  DEFAULT_LOG_LEVEL: 'trace'
+
+  # scrambler
+  SCRAMBLER_ALGORITHM: 'RS256'
+  SCRAMBLER_RANDOM_BYTES: '15'
+  SCRAMBLER_SALT: '15'
+  SCRAMBLER_ACCESS_TOKEN_MINUTES: '10'
+  SCRAMBLER_REFRESH_TOKEN_DAYS: '21'
+
+  # redis
+  REDIS_HOST: 'api-gw-service-redis'
+  REDIS_PORT: '6379'
+
+  # http
+  SERVER_PROTOCOL: 'http'
+  SERVER_PORT: '30001'
+  SERVER_HOST: '0.0.0.0'
+
+  # communication
+  ORGANISATIONS_SERVICE_URL: 'http://organisations-service:5000'
+  ORGANISATIONS_REQUEST_TIMEOUT: '10000'
+
+  SCHEDULES_SERVICE_URL: 'http://schedule-service:5000'
+  SCHEDULES_REQUEST_TIMEOUT: '10000'
