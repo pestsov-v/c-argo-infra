@@ -4,17 +4,25 @@ metadata:
   name: stage
   namespace: stage
 resources:
-  - ../../base/api-gw
+  # resource base
   - resources/rabbitmq
 
+  # services base
+  - ../../base/api-gw
+  - ../../base/schedule
+
 patches:
-  - target:
-      kind: SealedSecret
-      name: api-gw-sealed-secret
-    path: ./services/api-gw/sealed-secret.yaml
+  # resource overrides
   - target:
       kind: SealedSecret
       name: rabbitmq-secret
     path: ./resources/rabbitmq/sealed-secret.yaml
+
+  # services overrides
+  - target:
+      kind: SealedSecret
+      name: api-gw-sealed-secret
+    path: ./services/api-gw/sealed-secret.yaml
+
 
 

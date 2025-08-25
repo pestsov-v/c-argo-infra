@@ -1,6 +1,7 @@
 resources:
   - api-gw-deployment.yaml
   - api-gw-service.yaml
+
   - redis-deployment.yaml
   - redis-service.yaml
 

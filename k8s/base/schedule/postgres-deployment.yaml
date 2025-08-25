@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: schedule-service-postgres
+  namespace: stage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: schedule-service-postgres
+  template:
+    metadata:
+      labels:
+        app: schedule-service-postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: schedule_db
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: schedule-sealed-secret
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: schedule-sealed-secret
+                  key: POSTGRES_PASSWORD
+          volumeMounts:
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-pvc

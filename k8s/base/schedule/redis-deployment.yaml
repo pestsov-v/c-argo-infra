@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: schedule-service-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: schedule-service-redis
+  template:
+    metadata:
+      labels:
+        app: schedule-service-redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:7-alpine
+          ports:
+            - containerPort: 6379
+          env:
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: schedule-sealed-secret
+                  key: REDIS_PASSWORD
+          command: ["sh", "-c"]
+          args:
+            - redis-server --requirepass "$REDIS_PASSWORD"
