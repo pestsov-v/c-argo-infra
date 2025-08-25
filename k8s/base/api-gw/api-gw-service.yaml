@@ -9,4 +9,4 @@ spec:
   ports:
     - port: 20080
       targetPort: 20080
-      nodePort: 31082
+      nodePort: 31083
